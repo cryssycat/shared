@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SharedHub | Co-Owned Characters</title>
+<link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+<header class="site-header">
+  <h1>💞 SharedHub 💞</h1>
+  <p class="tagline">Co-owned characters, shared stories, and favorite designs.</p>
+
+  <section class="creator-profile-card">
+    <div class="creator-avatar-wrap">
+      <img src="images/sharedhub-icon.png" alt="SharedHub icon" class="creator-avatar" onerror="this.src='images/placeholder.png'">
+    </div>
+    <div class="creator-profile-info">
+      <p class="creator-kicker">Shared Character Archive</p>
+      <h2>StarSundae × LunaBrew</h2>
+      <p class="creator-bio">A cozy shared hub for co-owned characters, couples, family groups, collabs, and characters that belong to both of us.</p>
+      <div class="creator-pills">
+        <span>⭐ StarSundae</span><span>🌙 LunaBrew</span><span>💞 Co-Owned</span><span>📖 Shared Lore</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-card wiki-nav-card">
+    <h2>📚 Navigation</h2>
+    <div class="wiki-links">
+      <a href="index.html">🏠 Shared Characters</a>
+      <a href="https://characterhub.pages.dev/worlds/">🌎 Shared Worlds</a>
+      <a href="https://characterhub.pages.dev/">⭐ StarHub</a>
+      <a href="https://lunabrew.pages.dev/">🌙 LunaHub</a>
+    </div>
+  </section>
+
+  <p id="characterCount" class="character-count">Loading characters...</p>
+</header>
+
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search shared characters by name, species, folder, status, world, or tag...">
+</div>
+
+<main><div id="folderContainer" class="folder-container"><p class="loading">Loading characters...</p></div></main>
+
+<script>
+const API_URL = "https://charahub.crysthigpen.workers.dev/characters";
+const HUB_VALUE = "Shared";
+
+const folderContainer = document.getElementById("folderContainer");
+const searchInput = document.getElementById("searchInput");
+const characterCount = document.getElementById("characterCount");
+let allCharacters = [];
+
+function getImage(path) {
+  if (!path) return "images/placeholder.png";
+  path = String(path).trim();
+  if (!path) return "images/placeholder.png";
+  if (path.startsWith("http")) return path;
+  if (path.startsWith("/")) return window.location.origin + path;
+  return window.location.origin + "/" + path;
+}
+
+function normalizeHub(value){ return String(value || "").trim().toLowerCase(); }
+
+function updateCount(showing,total){
+  if(total===0){characterCount.textContent="No shared public characters yet.";return;}
+  characterCount.textContent = showing === total
+    ? `${total} shared character${total===1?"":"s"}`
+    : `Showing ${showing} of ${total} shared character${total===1?"":"s"}`;
+}
+
+function groupByFolder(characters){
+  const folders={};
+  characters.forEach(character=>{
+    const folderName = character.folder && String(character.folder).trim() ? character.folder : "Unsorted";
+    if(!folders[folderName]) folders[folderName]=[];
+    folders[folderName].push(character);
+  });
+  return folders;
+}
+
+function sortFolderNames(folderNames){
+  const folderOrder=["Mains","Mascots","Couples","Family","Comfort Characters","Primary","Secondary","Tertiary","Unsorted"];
+  return folderNames.sort((a,b)=>{
+    const ia=folderOrder.indexOf(a), ib=folderOrder.indexOf(b);
+    if(ia===-1 && ib===-1) return a.localeCompare(b);
+    if(ia===-1) return 1;
+    if(ib===-1) return -1;
+    return ia-ib;
+  });
+}
+
+function createCharacterCard(character){
+  const name=character.name||"Unnamed";
+  const slug=character.slug||"";
+  const species=character.species||"Unknown Species";
+  const icon=getImage(character.icon||character.mainRef);
+  const card=document.createElement("a");
+  card.className="character-card";
+  card.href=`characters/index.html?slug=${encodeURIComponent(slug)}`;
+  card.innerHTML=`
+    <span class="favorite-badge hub-badge">💞 Shared</span>
+    ${character.favorite ? `<span class="favorite-badge">⭐ Favorite</span>` : ""}
+    <img src="${icon}" alt="${name}" onerror="this.src='images/placeholder.png'">
+    <h2>${name}</h2>
+    <p>${species}</p>`;
+  return card;
+}
+
+function renderCharacters(characters){
+  folderContainer.innerHTML="";
+  if(!characters || characters.length===0){
+    folderContainer.innerHTML="<p class='loading'>No shared characters found.</p>";
+    updateCount(0,allCharacters.length);
+    return;
+  }
+  const folders=groupByFolder(characters);
+  const folderNames=sortFolderNames(Object.keys(folders));
+  folderNames.forEach(folderName=>{
+    const section=document.createElement("section");
+    section.className="folder-section";
+    const heading=document.createElement("div");
+    heading.className="folder-heading";
+    heading.innerHTML=`
+      <div class="folder-title"><span class="folder-arrow">▼</span><h2>${folderName}</h2></div>
+      <span>${folders[folderName].length} character${folders[folderName].length===1?"":"s"}</span>`;
+    const grid=document.createElement("div");
+    grid.className="character-grid";
+    folders[folderName].forEach(character=>grid.appendChild(createCharacterCard(character)));
+    heading.addEventListener("click",()=>{
+      section.classList.toggle("collapsed");
+      const arrow=heading.querySelector(".folder-arrow");
+      arrow.textContent=section.classList.contains("collapsed") ? "▶" : "▼";
+    });
+    section.appendChild(heading);
+    section.appendChild(grid);
+    folderContainer.appendChild(section);
+  });
+  updateCount(characters.length,allCharacters.length);
+}
+
+const asArray=value=>Array.isArray(value)?value:[];
+function searchableWorlds(character){
+  if(!Array.isArray(character.worlds)) return "";
+  return character.worlds.map(world=>[world.name,world.slug,world.note].filter(Boolean).join(" ")).join(" ");
+}
+
+function filterCharacters(){
+  const value=searchInput.value.toLowerCase().trim();
+  if(!value){renderCharacters(allCharacters);return;}
+  const filtered=allCharacters.filter(character=>{
+    const gender=(character.gender||"").toLowerCase();
+    if(value==="male"||value==="female") return gender===value;
+    const searchableText=[
+      character.name,character.species,character.slug,character.folder,character.status,character.gender,
+      character.pronouns,character.age,character.occupation,character.mbti,character.introduction,
+      character.summary,character.personality,searchableWorlds(character),
+      character.favorites?.food,character.favorites?.drink,character.favorites?.color,character.favorites?.season,
+      character.favorites?.flower,character.favorites?.scent,character.favorites?.music,character.favorites?.animal,
+      ...asArray(character.tags),...asArray(character.likes),...asArray(character.dislikes),
+      ...asArray(character.hobbies),...asArray(character.fears)
+    ].filter(Boolean).join(" ").toLowerCase();
+    return searchableText.includes(value);
+  });
+  renderCharacters(filtered);
+}
+
+async function loadCharacters(){
+  try{
+    const response=await fetch(API_URL);
+    const data=await response.json();
+    if(!Array.isArray(data)){
+      folderContainer.innerHTML="<p class='loading'>The API loaded, but did not return a character list.</p>";
+      characterCount.textContent="Could not count characters.";
+      return;
+    }
+    allCharacters=data.filter(character=>normalizeHub(character.hub)===normalizeHub(HUB_VALUE));
+    renderCharacters(allCharacters);
+  }catch(error){
+    console.error(error);
+    folderContainer.innerHTML="<p class='loading'>Could not load shared characters.</p>";
+    characterCount.textContent="Could not load character count.";
+  }
+}
+
+searchInput.addEventListener("input",filterCharacters);
+loadCharacters();
+</script>
+</body>
+</html>
