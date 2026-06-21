@@ -182,12 +182,12 @@ function renderCharacterWorlds(worlds){
 }
 function getImageValue(label){
   if(!label)return 0;
-  const match=String(label).match(/\[(\d+(?:\.\d+)?)\]/);
+  const match=String(label).match(/\[\s*\$?(\d+(?:\.\d+)?)\s*\]/);
   return match?Number(match[1]):0;
 }
 function removeImageValue(label){
   if(!label)return"";
-  return String(label).replace(/\s*\[\d+(?:\.\d+)?\]\s*/g," ").replace(/\s+/g," ").trim();
+  return String(label).replace(/\s*\[\s*\$?\d+(?:\.\d+)?\s*\]\s*/g," ").replace(/\s+/g," ").trim();
 }
 function normalizeImageItem(item){
   if(!item)return null;
@@ -214,28 +214,31 @@ function normalizeImageItem(item){
     credits:Array.isArray(item.credits)?item.credits:[]
   };
 }
+function calculateImageListValue(images){
+  if(!Array.isArray(images))return 0;
+  return images.reduce((total,rawItem)=>{
+    const item=normalizeImageItem(rawItem);
+    if(!item)return total;
+    return total+getImageValue(item.label)+getImageValue(item.note);
+  },0);
+}
+function updateQuickArtValue(character){
+  const quickValue=document.getElementById("quickArtValue");
+  if(!quickValue)return;
+  const totalValue=calculateImageListValue(character.gallery)+calculateImageListValue(character.references);
+  quickValue.textContent=`$${totalValue.toFixed(2)}`;
+}
 function renderImages(id,images,name){
   const grid=document.getElementById(id);
   if(!grid)return;
   grid.innerHTML="";
-
-  let totalValue=0;
-
-  if(!Array.isArray(images)||images.length===0){
-    grid.innerHTML="<p>No images yet.</p>";
-    if(id==="galleryGrid"){
-      const quickValue=document.getElementById("quickArtValue");
-      if(quickValue)quickValue.textContent="$0.00";
-    }
-    return;
-  }
-
+  if(!Array.isArray(images)||images.length===0){grid.innerHTML="<p>No images yet.</p>";return;}
   images.forEach(rawItem=>{
     const item=normalizeImageItem(rawItem);
     if(!item||!item.url)return;
 
-    totalValue+=getImageValue(item.label);
     item.label=removeImageValue(item.label);
+    item.note=removeImageValue(item.note);
 
     const imageUrl=getImage(item.url);
     const card=document.createElement("div");
@@ -250,12 +253,6 @@ function renderImages(id,images,name){
     if(img)img.addEventListener("click",()=>openLightbox(imageUrl));
     grid.appendChild(card);
   });
-
-  if(id==="galleryGrid"){
-    const quickValue=document.getElementById("quickArtValue");
-    if(quickValue)quickValue.textContent=`$${totalValue.toFixed(2)}`;
-  }
-
   if(!grid.children.length)grid.innerHTML="<p>No images yet.</p>";
 }
 async function getLinkedCharacter(relSlug){
@@ -338,7 +335,7 @@ function fillCharacter(character){
   renderTags("tags",character.tags);renderCharacterWorlds(character.worlds);renderTags("likes",character.likes);renderTags("dislikes",character.dislikes);renderTags("hobbies",character.hobbies);renderTags("fears",character.fears);
   const mainRef=document.getElementById("mainRef");
   if(mainRef){mainRef.src=getImage(character.mainRef||character.icon||"images/placeholder.png");mainRef.alt=`${character.name||"Character"} reference`;}
-  renderImages("galleryGrid",character.gallery,character.name);renderImages("referencesGrid",character.references,character.name);renderRelationships(character.relationships);setupPrevNext();
+  updateQuickArtValue(character);renderImages("galleryGrid",character.gallery,character.name);renderImages("referencesGrid",character.references,character.name);renderRelationships(character.relationships);setupPrevNext();
 }
 async function loadCharacter(){
   try{
