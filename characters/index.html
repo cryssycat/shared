@@ -66,6 +66,10 @@
 
   <section id="gallery" class="tab-panel">
     <div class="section-title"><h2>Gallery</h2><p>Click any image to view it full size.</p></div>
+    <div class="value-tracker" id="galleryValueTracker" style="display:none;">
+      <span>Total Art Value</span>
+      <strong id="galleryValueTotal">$0.00</strong>
+    </div>
     <div id="galleryGrid" class="gallery-grid"><p>No images yet.</p></div>
   </section>
 
@@ -179,27 +183,59 @@ function renderCharacterWorlds(worlds){
     box.appendChild(link);
   });
 }
+function extractBracketValue(text=""){
+  const match=String(text||"").match(/\[\s*\$?(\d+(?:\.\d{1,2})?)\s*\]/);
+  return match?Number(match[1]):0;
+}
+function hideBracketValue(text=""){
+  return String(text||"").replace(/\s*\[\s*\$?\d+(?:\.\d{1,2})?\s*\]\s*/g," ").replace(/\s+/g," ").trim();
+}
+function formatMoney(amount){
+  return `$${Number(amount||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+}
+function updateGalleryValueTotal(total){
+  const tracker=document.getElementById("galleryValueTracker");
+  const totalBox=document.getElementById("galleryValueTotal");
+  if(!tracker||!totalBox)return;
+  if(total>0){
+    tracker.style.display="flex";
+    totalBox.textContent=formatMoney(total);
+  }else{
+    tracker.style.display="none";
+    totalBox.textContent="$0.00";
+  }
+}
 function normalizeImageItem(item){
   if(!item)return null;
-  if(typeof item==="string")return{url:item,label:"",credits:[]};
-  return{url:item.url||item.src||"",label:item.label||item.type||"",credits:Array.isArray(item.credits)?item.credits:[]};
+  if(typeof item==="string"){
+    const parts=String(item).split("|").map(part=>part.trim());
+    return{url:parts[1]||parts[0]||"",label:hideBracketValue(parts[0]||""),note:parts[2]||"",value:extractBracketValue(parts[0]||""),credits:[]};
+  }
+  const rawLabel=item.label||item.title||item.type||"";
+  return{url:item.url||item.src||"",label:hideBracketValue(rawLabel),note:item.note||item.notes||"",value:item.value?Number(item.value):extractBracketValue(rawLabel),credits:Array.isArray(item.credits)?item.credits:[]};
 }
 function renderImages(id,images,name){
   const grid=document.getElementById(id);
   if(!grid)return;
   grid.innerHTML="";
+  if(id==="galleryGrid")updateGalleryValueTotal(0);
   if(!Array.isArray(images)||images.length===0){grid.innerHTML="<p>No images yet.</p>";return;}
+  let totalValue=0;
   images.forEach(rawItem=>{
     const item=normalizeImageItem(rawItem);
     if(!item||!item.url)return;
+    totalValue+=Number(item.value||0);
     const imageUrl=getImage(item.url);
     const card=document.createElement("div");
     card.className="image-card";
-    card.innerHTML=`<img src="${imageUrl}" alt="${name||"Character"} image" onerror="this.src='../images/placeholder.png'">${item.label?`<p class="image-title">${item.label}</p>`:""}`;
+    const cleanLabel=item.label?`<p class="image-title">${item.label}</p>`:"";
+    const cleanNote=item.note?`<p class="image-note">${item.note}</p>`:"";
+    card.innerHTML=`<img src="${imageUrl}" alt="${name||"Character"} image" onerror="this.src='../images/placeholder.png'">${cleanLabel}${cleanNote}`;
     const img=card.querySelector("img");
     if(img)img.addEventListener("click",()=>openLightbox(imageUrl));
     grid.appendChild(card);
   });
+  if(id==="galleryGrid")updateGalleryValueTotal(totalValue);
   if(!grid.children.length)grid.innerHTML="<p>No images yet.</p>";
 }
 async function getLinkedCharacter(relSlug){
