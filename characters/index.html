@@ -1,3 +1,805 @@
+
+
+
+species-hub(1).js
+JavaScript
+I broke something putting new traits in
+
+
+generator-data(4).js
+JavaScript
+tell m e where this broke
+
+
+index (1)(2).html
+File
+Fix it that way, and clean up the html / js while at it.
+
+
+index(21).html
+File
+Put the html / js in for me please.
+
+
+index (1)(3).html
+File
+tabs broke.
+
+
+index (2)(1).html
+File
+still broken, tabs wont load
+
+
+generator-data(5).js
+JavaScript
+is something in here broken?
+
+It currently looks like this. What I want to do is convert a toyhouse code and make it look similar to that code with a selector like what we have (Visual-Novel, Classic, EtC)
+
+<!-- use find & replace to quick replace hex codes 
+---- default focal color is: #a09fba
+---- default content box color is: #444
+---- default bg color is: #222 
+---- default font color is: #fff
+---->
+
+<!-- main container -- set bg color & font color here -->
+<div style="border-radius: 1em; max-width: 1140px; box-shadow: 0 0 1em rgba(0,0,0,.25); color: #fff; background: #222;" 
+class="container-fluid p-3 my-5" >
+<div class="row no-gutters">
+  <div class="col-lg-3 push-lg-9 mb-3">
+    <div style="border-radius: 1em; font-size: 10.5pt; background: #444;"
+     class="card border-0 h-100 pt-3 px-md-2 px-3 pb-md-0 pb-2" >
+          <!----------- avatar -- use a 200 x 200 image -------------------------->
+          <img src="IMG_URL"
+          class="d-block p-2 mx-auto mb-3 rounded-circle" style="max-height:210px; background: #a09fba;">
+          
+          <!-------- stats --------------------------------------->
+          <div class="row no-gutters">
+              <div class="col-6 text-right text-uppercase pr-1" style="opacity: 0.7; letter-spacing: 1px;">
+                Name <i class="fal fa-angle-double-right fa-fw"></i></div>
+              <div class="col-6 mb-2">
+                write a name</div>
+
+              <div class="col-6 text-right text-uppercase pr-1" style="opacity: 0.7; letter-spacing: 1px;">
+                Age <i class="fal fa-angle-double-right fa-fw"></i></div>
+              <div class="col-6 mb-2">
+                much too old</div>
+
+              <div class="col-6 text-right text-uppercase pr-1" style="opacity: 0.7; letter-spacing: 1px;">
+                Gender <i class="fal fa-angle-double-right fa-fw"></i></div>
+              <div class="col-6 mb-2">
+                content</div>
+                
+              <div class="col-6 text-right text-uppercase pr-1" style="opacity: 0.7; letter-spacing: 1px;">
+                Height <i class="fal fa-angle-double-right fa-fw"></i></div>
+              <div class="col-6 mb-2">
+                content</div>
+
+              <div class="col-6 text-right text-uppercase pr-1" style="opacity: 0.7; letter-spacing: 1px;">
+                Race <i class="fal fa-angle-double-right fa-fw"></i></div>
+              <div class="col-6 mb-2">
+                (or species)</div>
+
+              <div class="col-6 text-right text-uppercase pr-1" style="opacity: 0.7; letter-spacing: 1px;">
+                Role <i class="fal fa-angle-double-right fa-fw"></i></div>
+              <div class="col-6 mb-2">
+                content</div>
+                
+              <div class="col-6 text-right text-uppercase pr-1" style="opacity: 0.7; letter-spacing: 1px;">
+                Demeanor <i class="fal fa-angle-double-right fa-fw"></i></div>
+              <div class="col-6 mb-2">
+                content</div>
+
+              <div class="col-6 text-right text-uppercase pr-1" style="opacity: 0.7; letter-spacing: 1px;">
+                Theme <i class="fal fa-angle-double-right fa-fw"></i></div>
+              <div class="col-6 mb-2">
+                <!-- link a song here -->
+                <a href="SONG_LINK" target="_BLANK" style="color: #a09fba;">
+                  <i class="fas fa-music-alt fa-fw" /><i class="fas fa-music fa-fw" /><i class="fas fa-music-alt fa-fw" /></a></div>
+                <!-- credit -- pls leave this -------->
+              <div class="col-6 text-right text-uppercase pr-1" style="opacity: 0.7; letter-spacing: 1px;">
+                HTML <i class="fal fa-angle-double-right fa-fw"></i></div>
+              <div class="col-6 mb-2">
+                <a href="/Pinky" target="_BLANK" style="color: #a09fba;">Pinky</a></div>
+                
+          </div>
+        </div>
+  </div>
+  <div class="col-lg-9 pull-lg-3 pr-md-3 mb-3">
+    <div class="row no-gutters">
+      <div class="col-12 mb-3">
+        <div style="background: #a09fba; border-radius: 1em;" class="card border-0 p-3" ><h1 class="display-4 text-white mb-0">
+          <!-- title block -- you can change the icon -- uses font awesome icons -->
+          <i class="fal fa-crown fa-fw" /> Title here</h1></div>
+      </div>
+      
+      <div class="col-md-5 mb-md-0 mb-3">
+        <div class="border-0 h-100 modal-open" style="border-radius: 1em; background: #444;">
+      <!------ FOCAL IMAGE --- will scale & crop with screen -- focus in top & center of image ----------->
+        <div style="background-image: url(IMG_URL); 
+        background-size: cover; background-position: top center; min-height: 400px;" class="h-100"></div>
+    </div>
+      </div>
+      <div class="col-md-7 pl-md-3">
+        <!--- about block -- will scroll when filled --->
+        <div class="pt-3 px-3 pb-1" style="border-radius: 1em; font-size: 10pt; height: 450px; overflow:auto; background: #444;">
+            <h4 class="text-uppercase" style="letter-spacing:1px; font-weight: 300; opacity: 0.7;">
+              <i class="fal fa-bookmark mr-1"></i>About
+            </h4>
+            <p class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet massa blandit, fermentum enim a, scelerisque velit. Integer interdum urna ac dui sollicitudin sollicitudin. In feugiat posuere nulla, eget lobortis ante. Aliquam magna libero, dictum sit amet scelerisque ac, scelerisque tincidunt magna. Nulla et consectetur diam. Aliquam ipsum mi, tristique sed vestibulum ac, aliquet eget magna. Mauris varius id magna vitae ullamcorper. In gravida libero consectetur, lobortis nisl sit amet, pellentesque ligula. Suspendisse tincidunt feugiat posuere. Duis dui erat, accumsan a aliquam eu, efficitur a tortor. Nunc molestie, leo in commodo aliquam, tellus augue tempor velit, non placerat ex sem non nisi.</p>
+
+            <h4 class="text-uppercase" style="letter-spacing:1px; font-weight: 300; opacity: 0.7;">
+              <i class="fal fa-bookmark mr-1"></i>Trivia
+            </h4>
+            <ul>
+              <li class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li class="mb-2">Suspendisse sit amet massa blandit, fermentum enim a, scelerisque velit.</li>
+              <li class="mb-2">Integer interdum urna ac dui sollicitudin sollicitudin.</li>
+              <li>Nulla et consectetur diam. Aliquam ipsum mi, tristique sed vestibulum ac, aliquet eget magna.</li>
+            </ul>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="p-3" style="border-radius: 1em; background: #a09fba;"><p class="text-white text-center" style="letter-spacing: 1px;">
+  <i class="fal fa-quote-left fa-fw mr-1 pull-left" /><i>
+  <!-- quote line here --------->
+  Write a quote or tagline here
+  </i><i class="fal fa-quote-right fa-fw ml-1 pull-right" /></p></div>
+</div>
+
+
+index (3)(1).html
+File
+
+style(6).css
+File
+So fix these to do that
+
+I see the issue.
+
+The files you uploaded are not the character profile page files. They're the Shared Hub landing page (index.html) and its CSS. The HTML only contains:
+
+Shared Hub
+Navigation
+Character Grid
+Search
+Folder Sections
+and no profile tabs, no Visual Novel layout, and no profile-style selector. index (3).html
+
+The CSS similarly only contains:
+
+.profile-card
+.tabs
+.tab-button
+.tab-panel
+for the existing character page styling, but there's no Carrd layout code in it yet. style.css
+
+So before I can rename:
+
+toyhouse-card
+→
+carrd-card
+I need the files that actually contain the character profile page.
+
+Can you upload one of these?
+
+characters/index.html
+or
+
+character.html
+or whatever file contains the page from your screenshot with:
+
+Quick Facts
+Overview
+Gallery
+References
+Relationships
+Favorites
+Credits
+Lore
+Once I have that file, I can:
+
+Add the Carrd layout option.
+
+Rename all Toyhouse references to Carrd.
+
+Hook it into your existing tab system.
+
+Make it match your purple CharacterHub theme.
+
+
+
+index (4)(1).html
+File
+
+Perfect. Now I can see the actual character profile page. index (4).html
+
+The good news: your current structure is already set up perfectly for adding profile layouts.
+
+Right now you have:
+
+Quick Facts
+↓
+Tabs
+↓
+Overview
+Gallery
+References
+Relationships
+Favorites
+Credits
+Lore
+The easiest way to add Carrd is not as another tab.
+
+Instead add a second profile view selector above the Quick Facts section:
+
+Classic | Visual Novel | Carrd
+Then show/hide entire profile layouts.
+
+What I'd Add
+Immediately after:
+
+<main class="profile-page">
+add:
+
+<div class="profile-style-switcher">
+
+  <button class="profile-style-button active"
+          data-style="classic">
+    Classic
+  </button>
+
+  <button class="profile-style-button"
+          data-style="visual-novel">
+    Visual Novel
+  </button>
+
+  <button class="profile-style-button"
+          data-style="carrd">
+    Carrd
+  </button>
+
+</div>
+Then Wrap Current Layout
+Wrap everything from:
+
+<section class="profile-card">
+down to:
+
+<div class="profile-nav">
+inside:
+
+<section
+  class="profile-layout active"
+  id="classicLayout">
+and
+
+</section>
+This becomes your existing Classic view.
+
+Then Add Carrd Layout
+After Classic:
+
+<section
+  class="profile-layout"
+  id="carrdLayout">
+
+  <div class="carrd-profile-card">
+
+    <div class="carrd-main">
+
+      <div class="carrd-title-card">
+        <h1 id="carrdName">Loading...</h1>
+      </div>
+
+      <div class="carrd-content-row">
+
+        <div class="carrd-focal-image">
+          <img id="carrdMainRef"
+               src="../images/placeholder.png">
+        </div>
+
+        <div class="carrd-scroll-box">
+
+          <h2>About</h2>
+          <p id="carrdIntroduction">
+            —
+          </p>
+
+          <h2>Trivia</h2>
+          <p id="carrdTrivia">
+            —
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <aside class="carrd-sidebar">
+
+      <img id="carrdAvatar"
+           class="carrd-avatar"
+           src="../images/placeholder.png">
+
+      <div class="carrd-stat">
+        <strong>Species</strong>
+        <span id="carrdSpecies">—</span>
+      </div>
+
+      <div class="carrd-stat">
+        <strong>Gender</strong>
+        <span id="carrdGender">—</span>
+      </div>
+
+      <div class="carrd-stat">
+        <strong>Occupation</strong>
+        <span id="carrdOccupation">—</span>
+      </div>
+
+      <div class="carrd-stat">
+        <strong>Theme</strong>
+        <span id="carrdTheme">—</span>
+      </div>
+
+    </aside>
+
+    <div class="carrd-quote">
+      <span id="carrdQuote">—</span>
+    </div>
+
+  </div>
+
+</section>
+Add To fillCharacter()
+Inside:
+
+function fillCharacter(character){
+add:
+
+setText("carrdName", character.name);
+setText("carrdSpecies", character.species);
+setText("carrdGender", character.gender);
+setText("carrdOccupation", character.occupation);
+setText("carrdTheme", character.themeSong);
+setText("carrdIntroduction", character.introduction);
+setText("carrdTrivia", character.trivia);
+setText("carrdQuote", character.quotes);
+
+const carrdMainRef =
+  document.getElementById("carrdMainRef");
+
+if (carrdMainRef) {
+  carrdMainRef.src =
+    getImage(
+      character.mainRef ||
+      character.icon
+    );
+}
+
+const carrdAvatar =
+  document.getElementById("carrdAvatar");
+
+if (carrdAvatar) {
+  carrdAvatar.src =
+    getImage(
+      character.icon ||
+      character.mainRef
+    );
+}
+Add Layout Switcher JS
+Add before:
+
+document.addEventListener(
+  "DOMContentLoaded"
+function setupProfileStyles(){
+
+  const buttons =
+    document.querySelectorAll(
+      ".profile-style-button"
+    );
+
+  buttons.forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        buttons.forEach(btn =>
+          btn.classList.remove("active")
+        );
+
+        document
+          .querySelectorAll(".profile-layout")
+          .forEach(layout =>
+            layout.classList.remove("active")
+          );
+
+        button.classList.add("active");
+
+        const style =
+          button.dataset.style;
+
+        if(style === "classic"){
+          document
+            .getElementById("classicLayout")
+            .classList.add("active");
+        }
+
+        if(style === "carrd"){
+          document
+            .getElementById("carrdLayout")
+            .classList.add("active");
+        }
+
+      }
+    );
+
+  });
+
+}
+and update:
+
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+    setupTabs();
+    setupLightbox();
+    loadCharacter();
+  }
+);
+to:
+
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+    setupTabs();
+    setupLightbox();
+    setupProfileStyles();
+    loadCharacter();
+  }
+);
+This gives you the foundation for:
+
+Classic
+Visual Novel
+Carrd
+without touching your existing tabs, gallery system, relationships, references, or API data. It just presents the same character data in a different layout. index (4).html
+
+
+I’ll update the character profile HTML and the CSS together, then zip them with the correct folder structure so you can drop them back into SharedHub.
+
+Thought for 5s
+I’ll run that file update again and package the corrected characters/index.html plus style.css. 
+
+Done.
+
+Download updated ZIP
+Updated character index
+Updated CSS 
+
+
+
+Now, what do I do in notion to make that work
+
+The good news is: you don't need to change much in Notion at all.
+
+The Carrd layout is using the exact same fields your Classic layout already uses. It's just displaying them differently.
+
+Existing Fields It Already Uses
+Your current character page already loads:
+
+Name
+Species
+Gender
+Pronouns
+Age
+Height
+Occupation
+
+Introduction
+Summary
+Personality
+Trivia
+Quotes
+Theme Song
+
+Main Ref
+Icon
+from your character JSON/API. index (4).html
+
+The Carrd view simply reuses those.
+
+What You'll Want To Fill Out Better
+The Carrd layout makes these fields much more visible:
+
+Main Ref
+Currently:
+
+mainRef
+This becomes the huge focal image.
+
+So every character should ideally have:
+
+Reference Sheet
+Front View
+Full Body
+assigned as Main Ref.
+
+Icon
+Currently:
+
+icon
+This becomes the circular avatar.
+
+I recommend:
+
+Headshot
+Icon
+Bust Shot
+for every character.
+
+Introduction
+Currently:
+
+introduction
+This becomes the large "About" section.
+
+Instead of:
+
+Nova is a dragon.
+do:
+
+Nova is a cheerful dragon who travels between floating islands collecting forgotten stories. Although energetic and friendly, she secretly worries about disappointing the people she cares about.
+Summary
+Currently:
+
+summary
+This becomes its own section.
+
+Good for:
+
+A cheerful story collector with a strong sense of loyalty.
+Personality
+Currently:
+
+personality
+This gets a dedicated section.
+
+Example:
+
+Kind
+Impulsive
+Protective
+Curious
+or a paragraph.
+
+Trivia
+Currently:
+
+trivia
+This becomes a large visible block.
+
+I would start storing:
+
+Favorite drink: Matcha latte
+Sleeps with plushies
+Afraid of deep water
+Collects postcards
+Quotes
+Currently:
+
+quotes
+This becomes the quote bar at the bottom.
+
+Example:
+
+Every story deserves to be remembered.
+Optional Future Notion Fields
+These aren't required, but would make Carrd look even better.
+
+Title
+Instead of:
+
+Nova
+you could have:
+
+The Story Collector
+Displayed at the top.
+
+Demeanor
+Like the original Toyhouse code:
+
+Cheerful
+Reserved
+Motherly
+Chaotic
+Theme Link
+Instead of:
+
+Theme Song
+store:
+
+Theme Song Name
+Theme URL
+and make it clickable.
+
+Aesthetic
+Example:
+
+Pastel Dreamcore
+Royal Gothic
+Tea Witch
+My Recommendation
+Before adding more fields:
+
+Step 1
+Use the Carrd layout with your current database.
+
+Step 2
+Add only these new Notion properties:
+
+Title
+Aesthetic
+Theme URL
+Everything else already exists and should populate automatically from your current SharedHub character database.
+
+
+and do I need to add carrd to the selector?
+
+Yes.
+
+If you want users to be able to switch to the Carrd layout, you must add it to the selector.
+
+Find the selector we added:
+
+<div class="profile-style-switcher">
+  <button class="profile-style-button active" data-style="classic">
+    Classic
+  </button>
+
+  <button class="profile-style-button" data-style="visual-novel">
+    Visual Novel
+  </button>
+</div>
+and make sure it looks like:
+
+<div class="profile-style-switcher">
+
+  <button class="profile-style-button active"
+          data-style="classic">
+    Classic
+  </button>
+
+  <button class="profile-style-button"
+          data-style="visual-novel">
+    Visual Novel
+  </button>
+
+  <button class="profile-style-button"
+          data-style="carrd">
+    Carrd
+  </button>
+
+</div>
+Then make sure your JavaScript contains:
+
+if(style === "carrd"){
+  document
+    .getElementById("carrdLayout")
+    .classList.add("active");
+}
+inside setupProfileStyles().
+
+Quick Check
+You should now have:
+
+HTML
+profile-style-switcher
+Classic button
+Visual Novel button
+Carrd button
+
+classicLayout
+visualNovelLayout
+carrdLayout
+JavaScript
+setupProfileStyles()
+classic handler
+visual novel handler
+carrd handler
+CSS
+.profile-style-switcher
+.profile-style-button
+.carrd-profile-card
+.carrd-sidebar
+.carrd-scroll-box
+...
+If all three exist, then the selector will show:
+
+Classic | Visual Novel | Carrd
+and clicking Carrd will swap the entire profile page into the new Carrd-style layout.
+
+
+
+Library
+/
+index (4)(1).html
+More actions
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +816,6 @@
 </header>
 
 <main class="profile-page">
-  <div class="profile-style-switcher" aria-label="Profile style selector">
-    <button class="profile-style-button active" data-style="classic">Classic</button>
-    <button class="profile-style-button" data-style="visual-novel">Visual Novel</button>
-    <button class="profile-style-button" data-style="carrd">Carrd</button>
-  </div>
-  <section class="profile-layout active" id="classicLayout">
   <section class="profile-card">
     <div class="main-ref-wrap">
       <img id="mainRef" class="main-ref" src="../images/placeholder.png" alt="Character reference">
@@ -72,428 +868,3 @@
   </section>
 
   <section id="gallery" class="tab-panel">
-    <div class="section-title"><h2>Gallery</h2><p>Click any image to view it full size.</p></div>
-    <div id="galleryGrid" class="gallery-grid"><p>No images yet.</p></div>
-  </section>
-
-  <section id="references" class="tab-panel">
-    <div class="section-title"><h2>References</h2><p>Main reference, outfit sheets, item sheets, expression sheets, and design notes.</p></div>
-    <div id="referencesGrid" class="gallery-grid"><p>No references yet.</p></div>
-  </section>
-
-  <section id="relationships" class="tab-panel">
-    <div class="section-title"><h2>Relationships</h2><p>Friends, partners, family, rivals, and important connections.</p></div>
-    <div id="relationshipsGrid" class="relationship-grid"><p>No relationships yet.</p></div>
-  </section>
-
-  <section id="favorites" class="tab-panel">
-    <div class="content-grid">
-      <div class="content-card"><h2>Favorite Food</h2><p id="favFood">—</p></div>
-      <div class="content-card"><h2>Favorite Drink</h2><p id="favDrink">—</p></div>
-      <div class="content-card"><h2>Favorite Color</h2><p id="favColor">—</p></div>
-      <div class="content-card"><h2>Favorite Season</h2><p id="favSeason">—</p></div>
-      <div class="content-card"><h2>Favorite Flower</h2><p id="favFlower">—</p></div>
-      <div class="content-card"><h2>Favorite Scent</h2><p id="favScent">—</p></div>
-      <div class="content-card"><h2>Favorite Music</h2><p id="favMusic">—</p></div>
-      <div class="content-card"><h2>Favorite Animal</h2><p id="favAnimal">—</p></div>
-    </div>
-  </section>
-
-  <section id="credits" class="tab-panel">
-    <div class="content-grid">
-      <div class="content-card"><h2>Owner</h2><p id="owner">—</p></div>
-      <div class="content-card"><h2>Designer</h2><p id="designer">—</p></div>
-      <div class="content-card"><h2>Artist</h2><p id="artist">—</p></div>
-      <div class="content-card"><h2>Colorist</h2><p id="colorist">—</p></div>
-      <div class="content-card wide-card"><h2>Permissions</h2><p id="permissions">—</p></div>
-      <div class="content-card"><h2>Trade Status</h2><p id="tradeStatus">—</p></div>
-      <div class="content-card"><h2>Resale Status</h2><p id="resaleStatus">—</p></div>
-    </div>
-  </section>
-
-  <section id="lore" class="tab-panel">
-    <div class="content-grid">
-      <div class="content-card"><h2>Trivia</h2><p id="trivia">—</p></div>
-      <div class="content-card"><h2>Quote</h2><p id="quotes">—</p></div>
-      <div class="content-card wide-card"><h2>Lore</h2><p id="loreText">—</p></div>
-    </div>
-  </section>
-
-  <div class="profile-nav">
-    <a id="prevCharacter" href="../index.html">← Previous</a>
-    <a href="../index.html">Back to SharedHub</a>
-    <a id="nextCharacter" href="../index.html">Next →</a>
-  </div>
-  </section>
-
-  <section class="profile-layout" id="visualNovelLayout">
-    <div class="content-card wide-card">
-      <h2>Visual Novel</h2>
-      <p>This layout is reserved for a future visual-novel style profile.</p>
-    </div>
-  </section>
-
-  <section class="profile-layout" id="carrdLayout">
-    <div class="carrd-profile-card">
-      <div class="carrd-main">
-        <div class="carrd-title-card">
-          <span class="carrd-title-icon">♕</span>
-          <h1 id="carrdName">Loading...</h1>
-        </div>
-
-        <div class="carrd-content-row">
-          <div class="carrd-focal-image">
-            <img id="carrdMainRef" src="../images/placeholder.png" alt="Character image">
-          </div>
-
-          <div class="carrd-scroll-box">
-            <h2>About</h2>
-            <p id="carrdIntroduction">—</p>
-
-            <h2>Summary</h2>
-            <p id="carrdSummary">—</p>
-
-            <h2>Personality</h2>
-            <p id="carrdPersonality">—</p>
-
-            <h2>Trivia</h2>
-            <p id="carrdTrivia">—</p>
-          </div>
-        </div>
-      </div>
-
-      <aside class="carrd-sidebar">
-        <img id="carrdAvatar" class="carrd-avatar" src="../images/placeholder.png" alt="Character avatar">
-
-        <div class="carrd-stat"><strong>Name</strong><span id="carrdStatName">—</span></div>
-        <div class="carrd-stat"><strong>Species</strong><span id="carrdSpecies">—</span></div>
-        <div class="carrd-stat"><strong>Gender</strong><span id="carrdGender">—</span></div>
-        <div class="carrd-stat"><strong>Pronouns</strong><span id="carrdPronouns">—</span></div>
-        <div class="carrd-stat"><strong>Age</strong><span id="carrdAge">—</span></div>
-        <div class="carrd-stat"><strong>Height</strong><span id="carrdHeight">—</span></div>
-        <div class="carrd-stat"><strong>Role</strong><span id="carrdOccupation">—</span></div>
-        <div class="carrd-stat"><strong>Theme</strong><span id="carrdTheme">—</span></div>
-      </aside>
-
-      <div class="carrd-quote">
-        “ <span id="carrdQuote">—</span> ”
-      </div>
-    </div>
-
-    <div class="profile-nav carrd-profile-nav">
-      <a id="carrdPrevCharacter" href="../index.html">← Previous</a>
-      <a href="../index.html">Back to SharedHub</a>
-      <a id="carrdNextCharacter" href="../index.html">Next →</a>
-    </div>
-  </section>
-
-</main>
-
-<div id="lightbox" class="lightbox">
-  <button id="lightboxClose" class="lightbox-close">×</button>
-  <img id="lightboxImage" src="" alt="Full-size image">
-</div>
-
-<script>
-const API_BASE="https://charahub.crysthigpen.workers.dev";
-const API_URL=`${API_BASE}/characters`;
-const HUB_VALUE="Shared";
-const params=new URLSearchParams(window.location.search);
-const SLUG=params.get("slug");
-let allCharacters=[],currentCharacter=null,customCssLoaded="";
-
-function getImage(path){
-  if(!path)return"../images/placeholder.png";
-  path=String(path).trim();
-  if(!path)return"../images/placeholder.png";
-  if(path.startsWith("http"))return path;
-  if(path.startsWith("/"))return window.location.origin+path;
-  return window.location.origin+"/"+path;
-}
-function normalizeHub(value){return String(value||"").trim().toLowerCase();}
-function loadCustomCss(path){
-  if(!path)return;
-  const href=getImage(path);
-  if(customCssLoaded===href)return;
-  customCssLoaded=href;
-  const oldCustom=document.getElementById("characterCustomCss");
-  if(oldCustom)oldCustom.remove();
-  const link=document.createElement("link");
-  link.id="characterCustomCss";link.rel="stylesheet";link.href=href+(href.includes("?")?"&":"?")+"v="+Date.now();
-  document.head.appendChild(link);
-}
-function setText(id,value,fallback="—"){
-  const el=document.getElementById(id);
-  if(!el)return;
-  el.textContent=value&&String(value).trim()?value:fallback;
-}
-function renderTags(id,items){
-  const box=document.getElementById(id);
-  if(!box)return;
-  box.innerHTML="";
-  if(!Array.isArray(items)||items.length===0){box.innerHTML='<span class="tag">—</span>';return;}
-  items.forEach(item=>{const span=document.createElement("span");span.className="tag";span.textContent=item;box.appendChild(span);});
-}
-function renderCharacterWorlds(worlds){
-  const wrap=document.getElementById("characterWorldsWrap"),box=document.getElementById("characterWorlds");
-  if(!wrap||!box)return;
-  box.innerHTML="";
-  if(!Array.isArray(worlds)||worlds.length===0){wrap.style.display="none";return;}
-  wrap.style.display="block";
-  worlds.forEach(world=>{
-    if(!world||!world.name||!world.slug)return;
-    const link=document.createElement("a");
-    link.className="tag";
-    link.textContent=world.note?`${world.name} — ${world.note}`:world.name;
-    link.href=`https://characterhub.pages.dev/world/?slug=${encodeURIComponent(world.slug)}`;
-    box.appendChild(link);
-  });
-}
-function getImageValue(label){
-  if(!label)return 0;
-  const match=String(label).match(/\[\s*\$?(\d+(?:\.\d+)?)\s*\]/);
-  return match?Number(match[1]):0;
-}
-function removeImageValue(label){
-  if(!label)return"";
-  return String(label).replace(/\s*\[\s*\$?\d+(?:\.\d+)?\s*\]\s*/g," ").replace(/\s+/g," ").trim();
-}
-function normalizeImageItem(item){
-  if(!item)return null;
-
-  if(typeof item==="string"){
-    const parts=item.split("|").map(part=>part.trim());
-    if(parts.length>=2){
-      return{
-        url:parts[1]||"",
-        label:parts[0]||"",
-        note:parts.slice(2).join(" | ")||"",
-        credits:[]
-      };
-    }
-    return{url:item,label:"",note:"",credits:[]};
-  }
-
-  const rawLabel=item.label||item.title||item.type||"";
-  const rawNote=item.note||item.notes||item.description||"";
-  return{
-    url:item.url||item.src||"",
-    label:rawLabel,
-    note:rawNote,
-    credits:Array.isArray(item.credits)?item.credits:[]
-  };
-}
-function calculateImageListValue(images){
-  if(!Array.isArray(images))return 0;
-  return images.reduce((total,rawItem)=>{
-    const item=normalizeImageItem(rawItem);
-    if(!item)return total;
-    return total+getImageValue(item.label)+getImageValue(item.note);
-  },0);
-}
-function updateQuickArtValue(character){
-  const quickValue=document.getElementById("quickArtValue");
-  if(!quickValue)return;
-  const totalValue=calculateImageListValue(character.gallery)+calculateImageListValue(character.references);
-  quickValue.textContent=`$${totalValue.toFixed(2)}`;
-}
-function renderImages(id,images,name){
-  const grid=document.getElementById(id);
-  if(!grid)return;
-  grid.innerHTML="";
-  if(!Array.isArray(images)||images.length===0){grid.innerHTML="<p>No images yet.</p>";return;}
-  images.forEach(rawItem=>{
-    const item=normalizeImageItem(rawItem);
-    if(!item||!item.url)return;
-
-    item.label=removeImageValue(item.label);
-    item.note=removeImageValue(item.note);
-
-    const imageUrl=getImage(item.url);
-    const card=document.createElement("div");
-    card.className="image-card";
-
-    const titleHtml=item.label?`<p class="image-title">${item.label}</p>`:"";
-    const noteHtml=item.note?`<p class="image-note">${item.note}</p>`:"";
-
-    card.innerHTML=`<img src="${imageUrl}" alt="${name||"Character"} image" onerror="this.src='../images/placeholder.png'">${titleHtml}${noteHtml}`;
-
-    const img=card.querySelector("img");
-    if(img)img.addEventListener("click",()=>openLightbox(imageUrl));
-    grid.appendChild(card);
-  });
-  if(!grid.children.length)grid.innerHTML="<p>No images yet.</p>";
-}
-async function getLinkedCharacter(relSlug){
-  if(!relSlug)return null;
-  const cleanSlug=String(relSlug).trim();
-  const realSlug=cleanSlug.includes(":")?cleanSlug.split(":")[1]:cleanSlug;
-  try{
-    const response=await fetch(`${API_BASE}/character/${encodeURIComponent(realSlug)}`);
-    const data=await response.json();
-    if(data.error)return null;
-    return data;
-  }catch(err){console.error("Could not fetch linked character:",err);return null;}
-}
-function getCharacterLink(slug){
-  if(!slug)return"";
-  const cleanSlug=String(slug).trim();
-  const realSlug=cleanSlug.includes(":")?cleanSlug.split(":")[1]:cleanSlug;
-  return`index.html?slug=${encodeURIComponent(realSlug)}`;
-}
-async function renderRelationships(relationships){
-  const grid=document.getElementById("relationshipsGrid");
-  if(!grid)return;
-  grid.innerHTML="";
-  if(!Array.isArray(relationships)||relationships.length===0){grid.innerHTML="<p>No relationships yet.</p>";return;}
-  for(const rel of relationships){
-    const linkedCharacter=await getLinkedCharacter(rel.slug);
-    const name=linkedCharacter?.name||rel.name||"Unnamed";
-    const species=linkedCharacter?.species||"";
-    const icon=linkedCharacter?.icon||linkedCharacter?.mainRef||"";
-    const type=rel.type||"Connection";
-    const notes=rel.notes||"";
-    const slug=rel.slug||"";
-    const card=document.createElement("div");
-    card.className="relationship-card relationship-preview-card";
-    card.innerHTML=`${icon?`<img src="${getImage(icon)}" alt="${name}" onerror="this.style.display='none'">`:""}<h3>${name}</h3>${species?`<p>${species}</p>`:""}<span class="relationship-type">${type}</span><p>${notes||"No notes yet."}</p>${slug?`<a href="${getCharacterLink(slug)}">View Profile →</a>`:""}`;
-    grid.appendChild(card);
-  }
-}
-
-function setupProfileStyles(){
-  const buttons=document.querySelectorAll(".profile-style-button");
-  const layouts=document.querySelectorAll(".profile-layout");
-
-  buttons.forEach(button=>{
-    button.addEventListener("click",()=>{
-      const style=button.dataset.style;
-
-      buttons.forEach(btn=>btn.classList.remove("active"));
-      layouts.forEach(layout=>layout.classList.remove("active"));
-
-      button.classList.add("active");
-
-      if(style==="classic"){
-        const layout=document.getElementById("classicLayout");
-        if(layout)layout.classList.add("active");
-      }
-
-      if(style==="visual-novel"){
-        const layout=document.getElementById("visualNovelLayout");
-        if(layout)layout.classList.add("active");
-      }
-
-      if(style==="carrd"){
-        const layout=document.getElementById("carrdLayout");
-        if(layout)layout.classList.add("active");
-      }
-    });
-  });
-}
-
-function setupTabs(){
-  document.querySelectorAll(".tab-button").forEach(button=>{
-    button.addEventListener("click",()=>{
-      const target=button.dataset.tab;
-      document.querySelectorAll(".tab-button").forEach(btn=>btn.classList.remove("active"));
-      document.querySelectorAll(".tab-panel").forEach(panel=>panel.classList.remove("active"));
-      button.classList.add("active");
-      const panel=document.getElementById(target);
-      if(panel)panel.classList.add("active");
-    });
-  });
-}
-function openLightbox(src){const img=document.getElementById("lightboxImage"),box=document.getElementById("lightbox");if(!img||!box)return;img.src=src;box.classList.add("active");}
-function closeLightbox(){const img=document.getElementById("lightboxImage"),box=document.getElementById("lightbox");if(!img||!box)return;box.classList.remove("active");img.src="";}
-function setupLightbox(){
-  const closeButton=document.getElementById("lightboxClose"),lightbox=document.getElementById("lightbox");
-  if(closeButton)closeButton.addEventListener("click",closeLightbox);
-  if(lightbox)lightbox.addEventListener("click",event=>{if(event.target.id==="lightbox")closeLightbox();});
-  document.addEventListener("keydown",event=>{if(event.key==="Escape")closeLightbox();});
-}
-function setupPrevNext(){
-  if(!currentCharacter||!Array.isArray(allCharacters)||allCharacters.length===0)return;
-  const currentIndex=allCharacters.findIndex(c=>c.slug===currentCharacter.slug);
-  if(currentIndex===-1)return;
-  const prev=allCharacters[(currentIndex-1+allCharacters.length)%allCharacters.length],next=allCharacters[(currentIndex+1)%allCharacters.length];
-  const prevBtn=document.getElementById("prevCharacter"),nextBtn=document.getElementById("nextCharacter");
-  const carrdPrevBtn=document.getElementById("carrdPrevCharacter"),carrdNextBtn=document.getElementById("carrdNextCharacter");
-  const navPairs=[[prevBtn,nextBtn],[carrdPrevBtn,carrdNextBtn]];
-
-  if(allCharacters.length<=1){
-    navPairs.forEach(pair=>{
-      if(pair[0])pair[0].style.display="none";
-      if(pair[1])pair[1].style.display="none";
-    });
-    return;
-  }
-
-  navPairs.forEach(pair=>{
-    const prevLink=pair[0],nextLink=pair[1];
-    if(!prevLink||!nextLink)return;
-    prevLink.href=`index.html?slug=${encodeURIComponent(prev.slug)}`;
-    prevLink.textContent=`← ${prev.name||"Previous"}`;
-    nextLink.href=`index.html?slug=${encodeURIComponent(next.slug)}`;
-    nextLink.textContent=`${next.name||"Next"} →`;
-  });
-}
-function fillCharacter(character){
-  currentCharacter=character;
-  setText("carrdName",character.name,"Unnamed Character");
-  setText("carrdStatName",character.name,"Unnamed");
-  setText("carrdSpecies",character.species);
-  setText("carrdGender",character.gender);
-  setText("carrdPronouns",character.pronouns);
-  setText("carrdAge",character.age);
-  setText("carrdHeight",character.height);
-  setText("carrdOccupation",character.occupation);
-  setText("carrdTheme",character.themeSong);
-  setText("carrdIntroduction",character.introduction,"No introduction yet.");
-  setText("carrdSummary",character.summary,"No summary yet.");
-  setText("carrdPersonality",character.personality,"No personality notes yet.");
-  setText("carrdTrivia",character.trivia,"No trivia yet.");
-  setText("carrdQuote",character.quotes,"No quote yet.");
-
-  const carrdMainRef=document.getElementById("carrdMainRef");
-  if(carrdMainRef){
-    carrdMainRef.src=getImage(character.mainRef||character.icon||"../images/placeholder.png");
-    carrdMainRef.alt=`${character.name||"Character"} image`;
-  }
-
-  const carrdAvatar=document.getElementById("carrdAvatar");
-  if(carrdAvatar){
-    carrdAvatar.src=getImage(character.icon||character.mainRef||"../images/placeholder.png");
-    carrdAvatar.alt=`${character.name||"Character"} avatar`;
-  }
-
-  loadCustomCss(character.customCss);
-  document.title=`${character.name||"Character"} | SharedHub`;
-  setText("characterName",character.name,"Unnamed Character");setText("characterSpecies",character.species,"");
-  setText("species",character.species);setText("gender",character.gender);setText("pronouns",character.pronouns);setText("age",character.age);setText("birthday",character.birthday);setText("height",character.height);setText("occupation",character.occupation);setText("folder",character.folder);setText("status",character.status);
-  setText("introduction",character.introduction,"No introduction yet.");setText("summary",character.summary,"No summary yet.");setText("personality",character.personality,"No personality notes yet.");setText("mbti",character.mbti);setText("designNotes",character.designNotes,"No design notes yet.");setText("themeSong",character.themeSong);
-  setText("trivia",character.trivia,"No trivia yet.");setText("quotes",character.quotes,"No quote yet.");setText("loreText",character.lore,"No lore yet.");
-  setText("favFood",character.favorites?.food);setText("favDrink",character.favorites?.drink);setText("favColor",character.favorites?.color);setText("favSeason",character.favorites?.season);setText("favFlower",character.favorites?.flower);setText("favScent",character.favorites?.scent);setText("favMusic",character.favorites?.music);setText("favAnimal",character.favorites?.animal);
-  setText("owner",character.credits?.owner);setText("designer",character.credits?.designer);setText("artist",character.credits?.artist);setText("colorist",character.credits?.colorist);setText("permissions",character.credits?.permissions);setText("tradeStatus",character.credits?.tradeStatus);setText("resaleStatus",character.credits?.resaleStatus);
-  renderTags("tags",character.tags);renderCharacterWorlds(character.worlds);renderTags("likes",character.likes);renderTags("dislikes",character.dislikes);renderTags("hobbies",character.hobbies);renderTags("fears",character.fears);
-  const mainRef=document.getElementById("mainRef");
-  if(mainRef){mainRef.src=getImage(character.mainRef||character.icon||"images/placeholder.png");mainRef.alt=`${character.name||"Character"} reference`;}
-  updateQuickArtValue(character);renderImages("galleryGrid",character.gallery,character.name);renderImages("referencesGrid",character.references,character.name);renderRelationships(character.relationships);setupPrevNext();
-}
-async function loadCharacter(){
-  try{
-    if(!SLUG){setText("characterName","No character selected");setText("characterSpecies","Go back to SharedHub and choose a character.");return;}
-    const listResponse=await fetch(API_URL);
-    const listData=await listResponse.json();
-    allCharacters=Array.isArray(listData)?listData.filter(character=>normalizeHub(character.hub)===normalizeHub(HUB_VALUE)):[];
-    const response=await fetch(`${API_BASE}/character/${encodeURIComponent(SLUG)}`);
-    const character=await response.json();
-    if(character.error){setText("characterName","Character not found");setText("characterSpecies",`No character found for slug: ${SLUG}`);return;}
-    if(normalizeHub(character.hub)!==normalizeHub(HUB_VALUE)){setText("characterName","Not a SharedHub character");setText("characterSpecies","This character is not marked with Hub = Shared.");return;}
-    fillCharacter(character);
-  }catch(err){console.error("Character page error:",err);setText("characterName","Unable to load character");setText("characterSpecies","Check the browser console for the exact error.");}
-}
-document.addEventListener("DOMContentLoaded",()=>{setupTabs();setupProfileStyles();setupLightbox();loadCharacter();});
-</script>
-</body>
-</html>
