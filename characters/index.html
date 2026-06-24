@@ -14,6 +14,12 @@
 </header>
 
 <main class="profile-page">
+  <div class="profile-style-switcher" aria-label="Profile style selector">
+    <button class="profile-style-button active" data-style="classic">Classic</button>
+    <button class="profile-style-button" data-style="visual-novel">Visual Novel</button>
+    <button class="profile-style-button" data-style="carrd">Carrd</button>
+  </div>
+  <section class="profile-layout active" id="classicLayout">
   <section class="profile-card">
     <div class="main-ref-wrap">
       <img id="mainRef" class="main-ref" src="../images/placeholder.png" alt="Character reference">
@@ -118,6 +124,69 @@
     <a href="../index.html">Back to SharedHub</a>
     <a id="nextCharacter" href="../index.html">Next →</a>
   </div>
+  </section>
+
+  <section class="profile-layout" id="visualNovelLayout">
+    <div class="content-card wide-card">
+      <h2>Visual Novel</h2>
+      <p>This layout is reserved for a future visual-novel style profile.</p>
+    </div>
+  </section>
+
+  <section class="profile-layout" id="carrdLayout">
+    <div class="carrd-profile-card">
+      <div class="carrd-main">
+        <div class="carrd-title-card">
+          <span class="carrd-title-icon">♕</span>
+          <h1 id="carrdName">Loading...</h1>
+        </div>
+
+        <div class="carrd-content-row">
+          <div class="carrd-focal-image">
+            <img id="carrdMainRef" src="../images/placeholder.png" alt="Character image">
+          </div>
+
+          <div class="carrd-scroll-box">
+            <h2>About</h2>
+            <p id="carrdIntroduction">—</p>
+
+            <h2>Summary</h2>
+            <p id="carrdSummary">—</p>
+
+            <h2>Personality</h2>
+            <p id="carrdPersonality">—</p>
+
+            <h2>Trivia</h2>
+            <p id="carrdTrivia">—</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="carrd-sidebar">
+        <img id="carrdAvatar" class="carrd-avatar" src="../images/placeholder.png" alt="Character avatar">
+
+        <div class="carrd-stat"><strong>Name</strong><span id="carrdStatName">—</span></div>
+        <div class="carrd-stat"><strong>Species</strong><span id="carrdSpecies">—</span></div>
+        <div class="carrd-stat"><strong>Gender</strong><span id="carrdGender">—</span></div>
+        <div class="carrd-stat"><strong>Pronouns</strong><span id="carrdPronouns">—</span></div>
+        <div class="carrd-stat"><strong>Age</strong><span id="carrdAge">—</span></div>
+        <div class="carrd-stat"><strong>Height</strong><span id="carrdHeight">—</span></div>
+        <div class="carrd-stat"><strong>Role</strong><span id="carrdOccupation">—</span></div>
+        <div class="carrd-stat"><strong>Theme</strong><span id="carrdTheme">—</span></div>
+      </aside>
+
+      <div class="carrd-quote">
+        “ <span id="carrdQuote">—</span> ”
+      </div>
+    </div>
+
+    <div class="profile-nav carrd-profile-nav">
+      <a id="carrdPrevCharacter" href="../index.html">← Previous</a>
+      <a href="../index.html">Back to SharedHub</a>
+      <a id="carrdNextCharacter" href="../index.html">Next →</a>
+    </div>
+  </section>
+
 </main>
 
 <div id="lightbox" class="lightbox">
@@ -291,6 +360,38 @@ async function renderRelationships(relationships){
     grid.appendChild(card);
   }
 }
+
+function setupProfileStyles(){
+  const buttons=document.querySelectorAll(".profile-style-button");
+  const layouts=document.querySelectorAll(".profile-layout");
+
+  buttons.forEach(button=>{
+    button.addEventListener("click",()=>{
+      const style=button.dataset.style;
+
+      buttons.forEach(btn=>btn.classList.remove("active"));
+      layouts.forEach(layout=>layout.classList.remove("active"));
+
+      button.classList.add("active");
+
+      if(style==="classic"){
+        const layout=document.getElementById("classicLayout");
+        if(layout)layout.classList.add("active");
+      }
+
+      if(style==="visual-novel"){
+        const layout=document.getElementById("visualNovelLayout");
+        if(layout)layout.classList.add("active");
+      }
+
+      if(style==="carrd"){
+        const layout=document.getElementById("carrdLayout");
+        if(layout)layout.classList.add("active");
+      }
+    });
+  });
+}
+
 function setupTabs(){
   document.querySelectorAll(".tab-button").forEach(button=>{
     button.addEventListener("click",()=>{
@@ -317,13 +418,55 @@ function setupPrevNext(){
   if(currentIndex===-1)return;
   const prev=allCharacters[(currentIndex-1+allCharacters.length)%allCharacters.length],next=allCharacters[(currentIndex+1)%allCharacters.length];
   const prevBtn=document.getElementById("prevCharacter"),nextBtn=document.getElementById("nextCharacter");
-  if(!prevBtn||!nextBtn)return;
-  if(allCharacters.length<=1){prevBtn.style.display="none";nextBtn.style.display="none";return;}
-  prevBtn.href=`index.html?slug=${encodeURIComponent(prev.slug)}`;prevBtn.textContent=`← ${prev.name||"Previous"}`;
-  nextBtn.href=`index.html?slug=${encodeURIComponent(next.slug)}`;nextBtn.textContent=`${next.name||"Next"} →`;
+  const carrdPrevBtn=document.getElementById("carrdPrevCharacter"),carrdNextBtn=document.getElementById("carrdNextCharacter");
+  const navPairs=[[prevBtn,nextBtn],[carrdPrevBtn,carrdNextBtn]];
+
+  if(allCharacters.length<=1){
+    navPairs.forEach(pair=>{
+      if(pair[0])pair[0].style.display="none";
+      if(pair[1])pair[1].style.display="none";
+    });
+    return;
+  }
+
+  navPairs.forEach(pair=>{
+    const prevLink=pair[0],nextLink=pair[1];
+    if(!prevLink||!nextLink)return;
+    prevLink.href=`index.html?slug=${encodeURIComponent(prev.slug)}`;
+    prevLink.textContent=`← ${prev.name||"Previous"}`;
+    nextLink.href=`index.html?slug=${encodeURIComponent(next.slug)}`;
+    nextLink.textContent=`${next.name||"Next"} →`;
+  });
 }
 function fillCharacter(character){
   currentCharacter=character;
+  setText("carrdName",character.name,"Unnamed Character");
+  setText("carrdStatName",character.name,"Unnamed");
+  setText("carrdSpecies",character.species);
+  setText("carrdGender",character.gender);
+  setText("carrdPronouns",character.pronouns);
+  setText("carrdAge",character.age);
+  setText("carrdHeight",character.height);
+  setText("carrdOccupation",character.occupation);
+  setText("carrdTheme",character.themeSong);
+  setText("carrdIntroduction",character.introduction,"No introduction yet.");
+  setText("carrdSummary",character.summary,"No summary yet.");
+  setText("carrdPersonality",character.personality,"No personality notes yet.");
+  setText("carrdTrivia",character.trivia,"No trivia yet.");
+  setText("carrdQuote",character.quotes,"No quote yet.");
+
+  const carrdMainRef=document.getElementById("carrdMainRef");
+  if(carrdMainRef){
+    carrdMainRef.src=getImage(character.mainRef||character.icon||"../images/placeholder.png");
+    carrdMainRef.alt=`${character.name||"Character"} image`;
+  }
+
+  const carrdAvatar=document.getElementById("carrdAvatar");
+  if(carrdAvatar){
+    carrdAvatar.src=getImage(character.icon||character.mainRef||"../images/placeholder.png");
+    carrdAvatar.alt=`${character.name||"Character"} avatar`;
+  }
+
   loadCustomCss(character.customCss);
   document.title=`${character.name||"Character"} | SharedHub`;
   setText("characterName",character.name,"Unnamed Character");setText("characterSpecies",character.species,"");
@@ -350,7 +493,7 @@ async function loadCharacter(){
     fillCharacter(character);
   }catch(err){console.error("Character page error:",err);setText("characterName","Unable to load character");setText("characterSpecies","Check the browser console for the exact error.");}
 }
-document.addEventListener("DOMContentLoaded",()=>{setupTabs();setupLightbox();loadCharacter();});
+document.addEventListener("DOMContentLoaded",()=>{setupTabs();setupProfileStyles();setupLightbox();loadCharacter();});
 </script>
 </body>
 </html>
