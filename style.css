@@ -19,3 +19,161 @@ body::before{content:"";position:fixed;inset:0;background-image:radial-gradient(
 .gallery-grid,.relationship-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}.image-card img{width:100%;height:280px;object-fit:cover;border-radius:20px;cursor:pointer}.image-title{text-align:center;margin-top:10px;color:#f2b8ff;font-weight:700}.section-title{text-align:center;margin-bottom:28px}.relationship-card{text-align:center;padding:24px}.relationship-card img{width:110px;height:110px;object-fit:cover;border-radius:50%;border:4px solid rgba(180,120,230,.85);margin-bottom:12px}.relationship-type{display:inline-block;margin:8px 0;padding:7px 12px;border-radius:999px;background:rgba(170,100,210,.25);color:#f2b8ff;font-weight:700}.profile-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:35px}
 .lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(2,1,6,.94);justify-content:center;align-items:center;padding:30px}.lightbox.active{display:flex}.lightbox img{max-width:95%;max-height:90vh;border-radius:20px}.lightbox-close{position:absolute;top:20px;right:30px;border:none;background:rgba(230,190,255,.25);color:#fff;font-size:2rem;width:50px;height:50px;border-radius:50%;cursor:pointer}
 @media(max-width:900px){.creator-profile-card,.profile-card{grid-template-columns:1fr;text-align:center}.site-header h1,.character-header h1{font-size:2.25rem}}
+
+
+/* Profile layout selector */
+.profile-style-switcher{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin:0 auto 30px;
+}
+.profile-style-button{
+  cursor:pointer;
+  color:#f4e9ff;
+  background:rgba(18,10,30,.82);
+  border:1px solid rgba(230,190,255,.30);
+  border-radius:999px;
+  padding:12px 20px;
+  font-family:inherit;
+  font-size:1rem;
+  transition:.25s;
+}
+.profile-style-button.active,
+.profile-style-button:hover{
+  background:linear-gradient(135deg,#32184b,#8f4bbb,#f2b8ff);
+  transform:translateY(-2px);
+  box-shadow:0 0 22px rgba(220,160,255,.22);
+}
+.profile-layout{display:none}
+.profile-layout.active{display:block}
+
+/* Carrd profile layout */
+.carrd-profile-card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 290px;
+  gap:20px;
+  padding:26px;
+  border-radius:32px;
+  background:rgba(18,10,30,.86);
+  border:1px solid rgba(230,190,255,.24);
+  box-shadow:0 12px 32px rgba(0,0,0,.42);
+  backdrop-filter:blur(16px);
+}
+.carrd-main,
+.carrd-sidebar,
+.carrd-title-card,
+.carrd-scroll-box,
+.carrd-quote{
+  border-radius:24px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(230,190,255,.18);
+}
+.carrd-title-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:20px 24px;
+  margin-bottom:20px;
+  background:linear-gradient(135deg,rgba(88,40,130,.95),rgba(170,88,200,.82),rgba(242,184,255,.55));
+}
+.carrd-title-card h1{
+  margin:0;
+  color:#fff;
+  font-size:2.25rem;
+}
+.carrd-title-icon{
+  color:#fff;
+  font-size:1.7rem;
+}
+.carrd-content-row{
+  display:grid;
+  grid-template-columns:42% 1fr;
+  gap:20px;
+}
+.carrd-focal-image img{
+  display:block;
+  width:100%;
+  height:450px;
+  object-fit:cover;
+  object-position:top center;
+  border-radius:24px;
+  background:rgba(10,5,18,.7);
+  border:1px solid rgba(230,190,255,.18);
+}
+.carrd-scroll-box{
+  height:450px;
+  overflow:auto;
+  padding:24px;
+  color:#f4e9ff;
+  line-height:1.65;
+}
+.carrd-scroll-box h2{
+  color:#f2b8ff;
+  margin:0 0 10px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:1rem;
+}
+.carrd-scroll-box p{
+  white-space:pre-line;
+  margin-bottom:22px;
+}
+.carrd-sidebar{
+  padding:24px;
+  text-align:center;
+}
+.carrd-avatar{
+  width:175px;
+  height:175px;
+  object-fit:cover;
+  border-radius:50%;
+  padding:6px;
+  margin:0 auto 24px;
+  background:linear-gradient(135deg,#f2b8ff,#8f4bbb,#5b2a82);
+}
+.carrd-stat{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:12px;
+  text-align:left;
+}
+.carrd-stat strong{
+  text-align:right;
+  color:#f2b8ff;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.78rem;
+}
+.carrd-stat span{
+  color:#f4e9ff;
+  overflow-wrap:anywhere;
+}
+.carrd-quote{
+  grid-column:1/-1;
+  padding:20px;
+  text-align:center;
+  color:#f2b8ff;
+  font-style:italic;
+  font-size:1.08rem;
+}
+.carrd-profile-nav{
+  margin-top:30px;
+}
+@media(max-width:900px){
+  .carrd-profile-card,
+  .carrd-content-row{
+    grid-template-columns:1fr;
+  }
+  .carrd-focal-image img,
+  .carrd-scroll-box{
+    height:auto;
+    min-height:320px;
+  }
+  .carrd-sidebar{
+    order:-1;
+  }
+}
+
