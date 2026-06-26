@@ -65,6 +65,45 @@ function getImage(path) {
 
 function normalizeHub(value){ return String(value || "").trim().toLowerCase(); }
 
+const HUB_IMAGE_BASES = {
+  star: "https://characterhub.pages.dev",
+  starhub: "https://characterhub.pages.dev",
+  "star hub": "https://characterhub.pages.dev",
+  luna: "https://lunabrew.pages.dev",
+  lunahub: "https://lunabrew.pages.dev",
+  "luna hub": "https://lunabrew.pages.dev",
+  shared: window.location.origin,
+  sharedhub: window.location.origin,
+  "shared hub": window.location.origin
+};
+
+function getHubImage(character, path) {
+  if (!path) return "";
+
+  path = String(path).trim();
+
+  if (!path) return "";
+  if (path.startsWith("http")) return path;
+
+  const hub = normalizeHub(character?.hub);
+  const base = HUB_IMAGE_BASES[hub];
+
+  if (base) {
+    return `${base}/${path.replace(/^\/+/, "")}`;
+  }
+
+  return getImage(path);
+}
+
+function getCharacterCardImage(character) {
+  return (
+    getHubImage(character, character.icon) ||
+    getHubImage(character, character.mainRef) ||
+    getHubImage(character, character.mainImage) ||
+    "images/placeholder.png"
+  );
+}
+
 function updateCount(showing,total){
   if(total===0){characterCount.textContent="No shared public characters yet.";return;}
   characterCount.textContent = showing === total
@@ -97,12 +136,13 @@ function createCharacterCard(character){
   const name=character.name||"Unnamed";
   const slug=character.slug||"";
   const species=character.species||"Unknown Species";
-  const icon=getImage(character.icon||character.mainRef);
+  const icon=getCharacterCardImage(character);
   const card=document.createElement("a");
   card.className="character-card";
   card.href=`characters/index.html?slug=${encodeURIComponent(slug)}`;
   card.innerHTML=`
     <span class="favorite-badge hub-badge">💞 Shared</span>
+    ${character.hub ? `<span class="favorite-badge">${character.hub}</span>` : ""}
     ${character.favorite ? `<span class="favorite-badge">⭐ Favorite</span>` : ""}
     <img src="${icon}" alt="${name}" onerror="this.src='images/placeholder.png'">
     <h2>${name}</h2>
